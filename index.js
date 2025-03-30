@@ -10,18 +10,13 @@ dotenv.config();
 
 app.use(express.json());
 
-app.use(
-  cors({
-    origin: process.env.BASE,
-    credentials: true,
-  })
-);
+app.use(cors());
 
 connectDB();
 
 // custom routes
-app.use('/api/food',foodRouter);
-app.use('/images',express.static("uploads"));
+app.use("/api/food", foodRouter);
+app.use("/images", express.static("uploads"));
 
 //default route
 app.get("/", (req, res) => {
