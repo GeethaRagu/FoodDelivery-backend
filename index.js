@@ -4,6 +4,7 @@ import cors from "cors";
 import connectDB from "./Database/Config.js";
 import foodRouter from "./Routes/foodRoute.js";
 import userRoute from "./Routes/userRoute.js";
+import cartRoute from "./Routes/cartRoute.js";
 
 const app = express();
 
@@ -19,6 +20,7 @@ connectDB();
 app.use("/api/food", foodRouter);
 app.use("/images", express.static("uploads"));
 app.use("/api/user",userRoute);
+app.use("/api/cart",cartRoute);
 
 //default route
 app.get("/", (req, res) => {

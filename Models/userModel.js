@@ -14,13 +14,12 @@ const userSchema = new mongoose.Schema({
         type: String,
         required:true
     },
-    cartData:[{
-        type: mongoose.Schema.Types.ObjectId,
-        ref:"foodModel",
-        default:[]
-    }],
+    cartData:{
+        type: Object,
+        default:{}
+    },
    
-},{ timestamps: true })
+},{ minimize: false})
 
 const userModel = mongoose.model("userModel",userSchema);
 export default userModel;
