@@ -5,6 +5,7 @@ import connectDB from "./Database/Config.js";
 import foodRouter from "./Routes/foodRoute.js";
 import userRoute from "./Routes/userRoute.js";
 import cartRoute from "./Routes/cartRoute.js";
+import orderRoute from "./Routes/orderRoute.js";
 
 const app = express();
 
@@ -21,6 +22,7 @@ app.use("/api/food", foodRouter);
 app.use("/images", express.static("uploads"));
 app.use("/api/user",userRoute);
 app.use("/api/cart",cartRoute);
+app.use("/api/order",orderRoute);
 
 //default route
 app.get("/", (req, res) => {
