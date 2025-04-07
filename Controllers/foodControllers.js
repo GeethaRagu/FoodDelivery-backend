@@ -70,3 +70,23 @@ export const foodRemove = async (req, res) => {
       .json({ success: false, message: "Internal server error in removefood" });
   }
 };
+
+
+export const searchFood = async(req,res)=>{
+  try {
+    const { query } = req.query; // Search query from frontend
+    if (!query) return res.status(400).json({ message: 'Query parameter is required' });
+
+    // Simple search using regex
+    const items = await foodModel.find({
+      $or: [
+        { name: { $regex: query, $options: 'i' } }, // case-insensitive search
+        { description: { $regex: query, $options: 'i' } }
+      ]
+    });
+
+    res.json(items);
+  } catch (err) {
+    res.status(500).json({ message: 'Error searching items', error: err });
+  }
+}
